@@ -17,7 +17,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Date, new { @class = "col-md-4 control-label" })
                 <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.Date, new { @class = "form-control datepicker", data_date_format = "dd/mm/yyyy", @readonly = "", placeholder = "Please click to select a date" })                   
+                    @Html.TextBoxFor(model => model.Date, new { @class = "form-control datepicker", data_date_format = "dd/mm/yyyy", data_date_end_date = "0d", data_date_autoclose = true, @readonly = "", placeholder = "Please click to select a date" })                   
                     @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
                 </div>
             </div>
