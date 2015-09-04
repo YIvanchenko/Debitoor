@@ -1,0 +1,38 @@
+﻿@using TimeTrackerApp.Models
+
+@model IEnumerable<TrackedTimeViewModel>
+
+@{
+    ViewBag.Title = "Overview";
+}
+
+<div class="container">
+    <h2>@ViewBag.Title.</h2>
+    <p>You can easily an overview of your time registrations, so that you can create correct invoices for your customers.</p>
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.LabelFor(m => m.First().Date)</th>
+                    <th>@Html.LabelFor(m => m.First().Hours)</th>
+                    <th>@Html.LabelFor(m => m.First().Description)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Date)</td>
+                        <td>@Html.DisplayFor(m => item.Hours)</td>
+                        <td>@Html.DisplayFor(m => item.Description)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>You haven't tracked your time yet.</p>
+    }
+</div>

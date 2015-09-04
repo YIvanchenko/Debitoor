@@ -15,14 +15,14 @@ namespace TimeTrackerApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "TimeTracker is a simple web application.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Please use the following contacts to get in touch with the application development team.";
 
             return View();
         }
