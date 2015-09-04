@@ -18,5 +18,6 @@ namespace TimeTrackerApp.DataModels
         public System.DateTime Date { get; set; }
         public double Hours { get; set; }
         public string Description { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -5,8 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TimeTrackerApp.DataModels;
 using TimeTrackerApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace TimeTrackerApp.Controllers
 {
@@ -29,6 +31,8 @@ namespace TimeTrackerApp.Controllers
                 try
                 {
                     var timesheet = Mapper.Map<Timesheet>(model);
+                    timesheet.UserId = User.Identity.GetUserId(); 
+
                     _timesheetsStore.Timesheets.Add(timesheet);
                     _timesheetsStore.SaveChanges();
 
@@ -46,7 +50,10 @@ namespace TimeTrackerApp.Controllers
         
         public ActionResult Overview()
         {
-            var timesheets = _timesheetsStore.Timesheets.OrderByDescending(t => t.Id);
+            var userId = User.Identity.GetUserId();
+            var timesheets = _timesheetsStore.Timesheets
+                                             .Where(t => t.UserId == userId)
+                                             .OrderByDescending(t => t.Date);
             var trackedTimeList = Mapper.Map<IEnumerable<TrackedTimeViewModel>>(timesheets);
 
             return View(trackedTimeList);

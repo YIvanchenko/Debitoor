@@ -16,6 +16,7 @@ namespace TimeTrackerApp.Models
 
         [Required]
         [Display(Name = "Spent hours")]
+        [Range(0.000277777778, 24, ErrorMessage = "Value must be more than 0 and less than 24")]
         public double Hours { get; set; }
 
         [Display(Name = "Description")]
